@@ -120,20 +120,20 @@ O principal tratamento realizado foi a conversão do campo `VALOR`, que estava a
 
 O campo técnico `_rescued_data` também não foi mantido nessa camada.
 
-| Campo | Tipo | Domínio / valores observados |
-|---|---|---|
-| AnoMes | INT | 202011 a 202608 |
-| PAG_PFPJ | STRING | PF, PJ, Nao disponivel |
-| REC_PFPJ | STRING | PF, PJ, Nao disponivel |
-| PAG_REGIAO | STRING | CENTRO-OESTE, NORDESTE, NORTE, SUDESTE, SUL, Nao informado |
-| REC_REGIAO | STRING | CENTRO-OESTE, NORDESTE, NORTE, SUDESTE, SUL, Nao informado |
-| PAG_IDADE | STRING | Faixas etárias, Nao informado, Nao se aplica e `"null"` (texto) |
-| REC_IDADE | STRING | Faixas etárias, Nao informado, Nao se aplica e `"null"` (texto) |
-| FORMAINICIACAO | STRING | APDN, APES, AUTO, DICT, INIC, MANU, QRDN, QRES, Nao disponivel e `"null"` (texto) |
-| NATUREZA | STRING | B2B, B2G, B2P, G2B, G2G, G2P, P2B, P2G, P2P, Nao disponivel |
-| FINALIDADE | STRING | Pix, Pix Saque, Pix Troco, Nao disponivel |
-| VALOR | DECIMAL(18,2) | Volume financeiro correspondente ao registro. Domínio: R$ 0,01 a R$ 726.543.194.521,15 |
-| QUANTIDADE | INT | Quantidade de transações correspondente ao registro. Domínio: 1 a 264.542.871 |
+| Campo | Tipo | Descrição | Domínio / valores observados |
+|---|---|---|---|
+| AnoMes | INT | Ano e mês de referência dos dados | 202011 a 202608 |
+| PAG_PFPJ | STRING | Tipo de pessoa do pagador | PF, PJ, Nao disponivel |
+| REC_PFPJ | STRING | Tipo de pessoa do recebedor | PF, PJ, Nao disponivel |
+| PAG_REGIAO | STRING | Região do pagador | CENTRO-OESTE, NORDESTE, NORTE, SUDESTE, SUL, Nao informado |
+| REC_REGIAO | STRING | Região do recebedor | CENTRO-OESTE, NORDESTE, NORTE, SUDESTE, SUL, Nao informado |
+| PAG_IDADE | STRING | Faixa etária do pagador | Faixas etárias, Nao informado, Nao se aplica e `"null"` (texto) |
+| REC_IDADE | STRING | Faixa etária do recebedor | Faixas etárias, Nao informado, Nao se aplica e `"null"` (texto) |
+| FORMAINICIACAO | STRING | Forma de iniciação da transação | APDN, APES, AUTO, DICT, INIC, MANU, QRDN, QRES, Nao disponivel e `"null"` (texto) |
+| NATUREZA | STRING | Natureza da transação | B2B, B2G, B2P, G2B, G2G, G2P, P2B, P2G, P2P, Nao disponivel |
+| FINALIDADE | STRING | Finalidade da transação | Pix, Pix Saque, Pix Troco, Nao disponivel |
+| VALOR | DECIMAL(18,2) | Volume financeiro correspondente ao registro | R$ 0,01 a R$ 726.543.194.521,15 |
+| QUANTIDADE | INT | Quantidade de transações correspondente ao registro | 1 a 264.542.871 |
 
 A tabela Silver permaneceu com **741.383 registros** após os tratamentos.
 
