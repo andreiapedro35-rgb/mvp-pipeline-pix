@@ -270,7 +270,7 @@ Durante uma verificação complementar, foram encontrados registros contendo o t
 
 Foram identificadas **12.860 ocorrências em `PAG_IDADE`**, **11.980 em `REC_IDADE`** e **1.952 em `FORMAINICIACAO`**.
 
-Esses valores foram mantidos, pois esses campos não são utilizados nas análises definidas para este pt e a remoção dos registros poderia causar perda de outras informações.
+Esses valores foram mantidos, pois esses campos não são utilizados nas análises definidas para este prpjeto e a remoção dos registros poderia causar perda de outras informações.
 
 Também foram encontradas categorias como `Nao informado`, `Nao disponivel` e `Nao se aplica`. Essas categorias foram mantidas por fazerem parte dos dados de origem.
 
