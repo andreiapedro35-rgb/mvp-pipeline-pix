@@ -29,7 +29,7 @@ Foi utilizado os dados de Estatísticas de transações Pix, que possui informa�
 
 O arquivo foi baixado no formato CSV pelo portal de dados abertos do Banco Central.
 
-Neste MVP, a coleta foi realizada de forma manual. Após o download, o arquivo CSV foi carregado em um Volume do Databricks.
+Neste projeto, a coleta foi realizada de forma manual. Após o download, o arquivo CSV foi carregado em um Volume do Databricks.
 
 O arquivo foi armazenado no seguinte local:
 
