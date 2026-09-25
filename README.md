@@ -2,9 +2,9 @@
 
 ## 1. Contexto de Negócio e Perguntas
 
-O Pix é um sistema de pagamentos instantâneos desenvolvido pelo Banco Central do Brasil e que passou a fazer parte do dia a dia de milhões de brasileiros.
+O Pix é um sistema de pagamentos instantâneos desenvolvido pelo Banco Central e que passou a fazer parte do dia a dia de milhões de brasileiros.
 
-Este projeto foi desenvolvido como MVP da disciplina de Engenharia de Dados, utilizando dados públicos disponibilizados pelo Banco Central do Brasil sobre as transações Pix.
+Este projeto foi desenvolvido como MVP da disciplina de Engenharia de Dados, utilizando dados públicos disponibilizados pelo Banco Central sobre as transações Pix.
 
 O objetivo do projeto é construir um pipeline de dados em nuvem para armazenar, tratar e analisar os dados das transações Pix, buscando entender como a utilização desse meio de pagamento evoluiu ao longo do período analisado.
 
@@ -12,7 +12,7 @@ Para o desenvolvimento do projeto foi utilizado o Databricks, seguindo a arquite
 
 ### 1.1 Perguntas de Negócio
 
-Para orientar as análises, foram definidas cinco perguntas:
+Para seguir com as análises, foram definidas cinco perguntas:
 
 1. Como evoluiu a quantidade de transações Pix ao longo do período analisado?
 2. Como evoluiu o volume financeiro movimentado por meio do Pix?
@@ -23,13 +23,11 @@ Para orientar as análises, foram definidas cinco perguntas:
 
 ## 2. Carga dos Dados
 
-Os dados utilizados neste projeto são públicos e foram disponibilizados pelo Banco Central do Brasil, por meio do conjunto de dados **Estatísticas do Pix**.
+Os dados utilizados neste projeto são públicos e foram disponibilizados pelo Banco Central, por meio do conjunto de dados Estatísticas do Pix.
 
-Foi utilizado o recurso **Estatísticas de transações Pix**, que possui informações mensais sobre quantidade e volume financeiro das transações, além de outras características disponíveis na base.
+Foi utilizado os dados de Estatísticas de transações Pix, que possui informações mensais sobre quantidade e volume financeiro das transações, além de outras características disponíveis na base.
 
-O arquivo foi baixado no formato CSV pelo Portal de Dados Abertos do Banco Central.
-
-Os dados são disponibilizados sob a licença **Open Database License (ODbL)**, que permite a utilização e o compartilhamento dos dados de acordo com os termos da licença.
+O arquivo foi baixado no formato CSV pelo portal de dados abertos do Banco Central.
 
 Neste MVP, a coleta foi realizada de forma manual. Após o download, o arquivo CSV foi carregado em um Volume do Databricks.
 
@@ -46,7 +44,7 @@ A partir desse arquivo foi iniciado o pipeline de dados.
 ![Arquivo CSV armazenado no Databricks](imagens/01_volume_pix_raw.png)
 
 **Figura 1 – Arquivo CSV armazenado no Volume do Databricks.**  
-*Fonte: elaboração própria.*
+
 
 
 ## 3. Arquitetura do Pipeline
@@ -68,14 +66,14 @@ Na camada Gold, foram criadas tabelas agregadas para atender às necessidades da
 ![Arquitetura do Pipeline](imagens/02_arquitetura_pipeline.png)
 
 **Figura 2 – Arquitetura do pipeline de dados.**  
-*Fonte: elaboração própria.*
+
 
 
 ## 4. Modelagem e Catálogo de Dados
 
 A modelagem dos dados foi organizada seguindo as camadas Bronze, Silver e Gold da arquitetura Medallion.
 
-Para este MVP foi adotada uma modelagem simples, baseada em tabelas flat e tabelas agregadas. A camada Silver mantém os dados tratados em uma tabela ampla e a camada Gold possui tabelas agregadas de acordo com as necessidades das perguntas de negócio.
+Para o projeto foi adotada uma modelagem simples, baseada em tabelas flat e tabelas agregadas. A camada Silver mantém os dados tratados em uma tabela ampla e a camada Gold possui tabelas agregadas de acordo com as necessidades das perguntas de negócio.
 
 Para apoiar a documentação do catálogo de dados, foram utilizadas consultas `DESCRIBE TABLE` no Databricks, permitindo verificar os nomes das colunas e seus respectivos tipos de dados.
 
@@ -84,7 +82,7 @@ Também foram realizadas consultas SQL para analisar os domínios dos campos cat
 ![Tabelas do projeto no Databricks](imagens/03_tabelas_catalog_databricks.png)
 
 **Figura 3 – Tabelas das camadas Bronze, Silver e Gold armazenadas no Databricks.**  
-*Fonte: elaboração própria.*
+
 
 
 ### 4.1 Camada Bronze – `bronze_pix`
@@ -140,7 +138,7 @@ A tabela Silver permaneceu com **741.383 registros** após os tratamentos.
 ![Estrutura da tabela Silver](imagens/04_describe_silver.png)
 
 **Figura 4 – Estrutura e tipos de dados da tabela `silver_pix` consultados no Databricks.**  
-*Fonte: elaboração própria.*
+
 
 
 ### 4.3 Camada Gold
@@ -259,20 +257,20 @@ Nas verificações realizadas, não foram encontrados valores SQL `NULL` nos cam
 ![Verificação de valores nulos](imagens/05_verificacao_nulos.png)
 
 **Figura 5 – Verificação de valores nulos nos dados da camada Bronze.**  
-*Fonte: elaboração própria.*
+
 
 Também não foram identificadas duplicidades completas na base. A comparação entre a quantidade total de registros e a quantidade de registros distintos apresentou **741.383 registros nos dois casos**.
 
 ![Verificação de duplicidades](imagens/06_verificacao_duplicidades.png)
 
 **Figura 6 – Verificação de registros duplicados na base de dados.**  
-*Fonte: elaboração própria.*
+
 
 Durante uma verificação complementar, foram encontrados registros contendo o texto `"null"` nos campos `PAG_IDADE`, `REC_IDADE` e `FORMAINICIACAO`.
 
 Foram identificadas **12.860 ocorrências em `PAG_IDADE`**, **11.980 em `REC_IDADE`** e **1.952 em `FORMAINICIACAO`**.
 
-Esses valores foram mantidos, pois esses campos não são utilizados nas análises definidas para este MVP e a remoção dos registros poderia causar perda de outras informações.
+Esses valores foram mantidos, pois esses campos não são utilizados nas análises definidas para este pt e a remoção dos registros poderia causar perda de outras informações.
 
 Também foram encontradas categorias como `Nao informado`, `Nao disponivel` e `Nao se aplica`. Essas categorias foram mantidas por fazerem parte dos dados de origem.
 
@@ -299,7 +297,7 @@ Apesar de algumas oscilações mensais, a tendência geral é de crescimento ao 
 ![Evolução da quantidade de transações Pix](imagens/07_evolucao_quantidade_pix.png)
 
 **Figura 7 – Evolução da quantidade de transações Pix.**  
-*Fonte: elaboração própria a partir dos dados do Banco Central do Brasil.*
+
 
 
 ### 7.2 Como evoluiu o volume financeiro movimentado por meio do Pix?
@@ -311,7 +309,7 @@ Apesar de algumas oscilações entre os meses, é possível observar uma tendên
 ![Evolução do volume financeiro](imagens/08_evolucao_volume_financeiro.png)
 
 **Figura 8 – Evolução do volume financeiro movimentado por meio do Pix.**  
-*Fonte: elaboração própria a partir dos dados do Banco Central do Brasil.*
+
 
 
 ### 7.3 Como evoluiu o valor médio das transações?
@@ -323,7 +321,7 @@ Ao longo do tempo, esse valor apresentou redução e posteriormente passou a apr
 ![Evolução do valor médio](imagens/09_evolucao_valor_medio.png)
 
 **Figura 9 – Evolução do valor médio das transações Pix.**  
-*Fonte: elaboração própria a partir dos dados do Banco Central do Brasil.*
+
 
 
 ### 7.4 Quais naturezas de transação possuem maior participação?
@@ -332,12 +330,11 @@ As transações **P2P (pessoa para pessoa)** apresentaram a maior quantidade de 
 
 Em seguida aparecem as transações **P2B (pessoa para empresa)**, com aproximadamente **94,74 bilhões de transações**.
 
-Os resultados mostram uma predominância das operações P2P e P2B na quantidade de transações realizadas.
 
 ![Transações por natureza](imagens/10_transacoes_por_natureza.png)
 
 **Figura 10 – Quantidade de transações Pix por natureza.**  
-*Fonte: elaboração própria a partir dos dados do Banco Central do Brasil.*
+
 
 
 ### 7.5 Como o volume financeiro das transações Pix difere entre pessoas físicas e pessoas jurídicas?
@@ -349,7 +346,7 @@ As pessoas jurídicas movimentaram aproximadamente **R$ 60,13 trilhões**, enqua
 ![Volume financeiro por tipo de pagador](imagens/11_volume_pf_pj.png)
 
 **Figura 11 – Volume financeiro das transações Pix por tipo de pagador.**  
-*Fonte: elaboração própria a partir dos dados do Banco Central do Brasil.*
+
 
 
 ### 7.6 Conclusão das Análises
@@ -373,7 +370,7 @@ Acredito que consegui atingir o objetivo proposto, construindo um pipeline compl
 
 Durante o desenvolvimento também encontrei alguns desafios, principalmente no tratamento dos dados e na criação das análises, mas conseguir identificar e corrigir esses pontos fez parte do meu aprendizado.
 
-Fiquei muito satisfeita com o resultado final e, principalmente, com o quanto aprendi durante o desenvolvimento.
+Fiquei muito satisfeita com o resultado final e principalmente com o quanto aprendi durante o desenvolvimento.
 
 Sei que o projeto ainda pode ser aprimorado, como com a automatização da coleta dos dados e a inclusão de novas análises, mas acredito que, para um primeiro projeto na área, consegui aplicar de forma prática os principais conceitos estudados e entender melhor como funciona um projeto de Engenharia de Dados de ponta a ponta.
 
