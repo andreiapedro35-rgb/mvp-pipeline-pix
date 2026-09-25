@@ -1,3 +1,3 @@
 # Imagens
 
-Esta pasta contém as evidências e visualizações utilizadas na documentação do projeto.
+Pasta com prints de evidências documentadas no projeto.
